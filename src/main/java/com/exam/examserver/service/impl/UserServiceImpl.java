@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user, Set<UserRole> userRoles) throws Exception {
         User local=this.userRepository.findByUsername(user.getUsername());
-        User email = this.userRepository.findByEmail(user.getEmail());
+        User email = this.userRepository.findByEmailContaining(user.getEmail());
         if (email!=null && local !=null){
             System.out.println("User is Already there!!!");
             throw new UserFoundException();
@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getAllUsers(){
         return this.userRepository.findAll();
+    }
+
+    @Override
+    public User getUserByEmail(String email){
+        return this.userRepository.findByEmailContaining(email);
     }
 
     @Override

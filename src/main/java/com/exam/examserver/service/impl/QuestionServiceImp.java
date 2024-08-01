@@ -31,8 +31,6 @@ public class QuestionServiceImp implements QuestionService {
 
     @Override
     public Question getQuestion(Long qId) {
-        Question question= new Question();
-        question.setQuesId(qId);
         return this.questionRepository.findById(qId).get();
     }
 

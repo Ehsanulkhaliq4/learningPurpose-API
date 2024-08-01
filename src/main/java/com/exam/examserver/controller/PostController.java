@@ -55,4 +55,9 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    @DeleteMapping("/delete-post/{id}")
+    public ResponseEntity<?> deletePostById(@PathVariable Long id){
+        this.postService.deletePost(id);
+        return ResponseEntity.ok("Post Delete SuccessFully");
+    }
 }

@@ -36,9 +36,9 @@ public class MySecurityConfig {
                 csrf(csrf->csrf.disable())
                 .cors(cors->cors.disable())
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/generate-token","/user/","/api/**").permitAll()
+                        .requestMatchers("/generate-token","/user/","/api/").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS).permitAll()
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(unAuthorizeHandler))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

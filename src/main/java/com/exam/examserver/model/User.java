@@ -2,6 +2,7 @@ package com.exam.examserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Data
 public class User implements UserDetails {
 
     @Id
@@ -22,6 +24,7 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String phone;
+    private String emailToken;
     private boolean enabled=true;
     private String profile;
 
@@ -34,7 +37,7 @@ public class User implements UserDetails {
 
     }
 
-    public User(Long id, String username, String password, String firstName, String lastName, String email, String phone, boolean enabled, String profile) {
+    public User(Long id, String username, String password, String firstName, String lastName, String email, String phone, boolean enabled, String profile,String emailToken) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -44,6 +47,7 @@ public class User implements UserDetails {
         this.phone = phone;
         this.enabled = enabled;
         this.profile = profile;
+        this.emailToken=emailToken;
     }
 
     @Override
@@ -150,4 +154,11 @@ public class User implements UserDetails {
         this.userRoles = userRoles;
     }
 
+    public String getEmailToken() {
+        return emailToken;
+    }
+
+    public void setEmailToken(String emailToken) {
+        this.emailToken = emailToken;
+    }
 }

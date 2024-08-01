@@ -49,4 +49,8 @@ public class PostServiceImpl implements PostService {
         return repository.findAllByNameContaining(name);
     }
 
+    public void deletePost(Long id){
+        this.repository.deleteById(id);
+    }
+
 }
